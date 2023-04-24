@@ -7,9 +7,10 @@ def calculate():
     sleep(10)
     return "y"
 # This defines a function named calculate that sleeps for 10 seconds and then returns the string "y". This function
-# is problematic to test because it takes a long time to execute due to the sleep call. I'm developing this; I use
-# external function
-
+# is problematic to test because it takes a long time to execute due to the sleep call.
+#
+#
+# I'm developing this; I use external function
 def my_function():
     x = calculate()  # <- how to mock calculate() ?
     return x
@@ -24,7 +25,17 @@ def mytest():
 # function with a mock object. The return_value attribute of the mock object is set to "blah", which means that the
 # calculate function will return "blah" instead of sleeping for 10 seconds and returning "y". The my_function is then
 # called within the assert statement and its result is compared to "blah", which should pass if everything works as
-# expected.
+# expected. The patch function is a tool that helps us test code more easily. It's like a magic spell that lets us
+# temporarily change how a function works, just for the purposes of our tests. We use patch to create a "fake"
+# version of a function, called a "mock", that behaves in a certain way that we decide. In this case, the mytest
+# function wants to test the my_function function. However, my_function uses another function called calculate,
+# which takes a long time to run because of the sleep(10) call. This makes it hard to test my_function properly. So,
+# mytest uses patch to make a fake version of calculate that doesn't actually sleep for 10 seconds, but just returns
+# the string "blah" immediately. By doing this, mytest can check that my_function correctly uses the result of
+# calculate, without having to wait for 10 seconds every time it runs. Think of it like playing pretend. We're
+# pretending that calculate is a different function that behaves the way we want it to, just for the purposes of our
+# test. It lets us test our code more easily and quickly, without having to wait a long time for a function to finish
+# running.
 
 if __name__ == "__main__":
     print("start running calculate")
