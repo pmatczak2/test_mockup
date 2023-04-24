@@ -3,6 +3,7 @@ from unittest.mock import Mock
 
 tuesday = datetime.datetime(year=2019, month=1, day=1)
 saturday = datetime.datetime(year=2019, month=1, day=5)
+thursday = datetime.datetime(year=2019, month=1, day=3)
 
 datetime = Mock()
 
@@ -16,3 +17,5 @@ datetime.datetime.today.return_value = tuesday
 assert is_weekday()
 datetime.datetime.today.return_value = saturday
 assert not is_weekday()
+datetime.datetime.today.return_value = thursday
+assert is_weekday()
